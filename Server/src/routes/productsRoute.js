@@ -7,7 +7,7 @@ product.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-product.post("/", (res, req) => {
+product.post("/", (req, res) => {
   res.send("Producto exitosamente añadido");
 })
 
