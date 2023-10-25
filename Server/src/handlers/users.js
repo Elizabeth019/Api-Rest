@@ -4,7 +4,7 @@ const {Users}= require('../db');
 const userId = async (req, res) =>{
   const {id}= req.params;
 
-
+await Users.findAll(id)
 
 };
 
