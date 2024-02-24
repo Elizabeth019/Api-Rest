@@ -13,17 +13,45 @@ const readData = () =>{
  } catch (error) {
   console.log(error);
  }
+};
+
+const writeData = (data) => {
+  try {
+    fs.writeFileSync('./db.json', JSON.stringify(data));
+    
+  } catch (error) {
+    console.log(error);
+  }
 }
+
 
 app.get('/', (req, res)=>{
   res.send('Mi Api con Nodejs')
 });
 
-app.get('/usuarios', (req, res)=>{
+app.get('/users', (req, res)=>{
   const users= readData();
    res.json(users);
-})
+});
 
+app.get('/users/:id', (req, res)=>{
+  const data=readData();
+  const id = parseInt(req.params.id);
+  const title= data.find((title)=> title.id === id);
+  res.json(title);
+});
+
+app.post('/users', (req, res) =>{
+  const data = readData();
+  const body= req.body;
+  const newUser = {
+    id: data.length +1,
+    ...body
+  };
+  data.push(newUser);
+  writeData(data);
+  res.json(newUser);
+})
 
 app.listen(3000, ()=>{
   console.log("Servidor corriendo en el puerto 3000")
