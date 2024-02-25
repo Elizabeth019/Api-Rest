@@ -105,6 +105,5 @@
 		"title": "quis ut nam facilis et officia qui",
 		"completed": false
 	},
-	{ "id": 22, "title": "Chao", "completed": false, "userId": 1 },
 	{ "id": 23, "userId": 1, "title": "Cumple de Valen", "completed": false }
 ]

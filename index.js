@@ -66,7 +66,14 @@ app.put ('/users/:id', (req, res) =>{
   res.json({message:'User Modificado'})
 });
 
-
+app.delete('/users/:id', (req, res)=>{
+  const data = readData();
+  const id = parseInt(req.params.id);
+  const userIndex = data.findIndex((user) => user.id === id);
+  data.splice(userIndex, 1);
+  writeData(data);
+  res.json({message:'User Eliminado'});
+});
 
 app.listen(3000, ()=>{
   console.log("Servidor corriendo en el puerto 3000")
