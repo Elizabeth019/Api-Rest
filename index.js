@@ -51,7 +51,22 @@ app.post('/users', (req, res) =>{
   data.push(newUser);
   writeData(data);
   res.json(newUser);
-})
+});
+
+app.put ('/users/:id', (req, res) =>{
+  const data= readData();
+  const body= req.body;
+  const id= parseInt(req.params.id);
+  const userIndex= data.findIndex((user)=> user.id === id);
+  data[userIndex] = {
+    ...data[userIndex],
+    ...body,
+  }
+  writeData(data);
+  res.json({message:'User Modificado'})
+});
+
+
 
 app.listen(3000, ()=>{
   console.log("Servidor corriendo en el puerto 3000")
